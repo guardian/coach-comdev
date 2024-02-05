@@ -1,0 +1,46 @@
+{
+	"name": "Coach ComDev",
+	"description": "Show ad requests",
+	"version": "1.0.0",
+	"manifest_version": 3,
+	"permissions": ["activeTab", "webRequest", "storage"],
+	"host_permissions": [
+		"*://*.theguardian.com/*",
+		"*://*.m.code.dev-theguardian.com/*",
+		"*://*.m.thegulocal.com/*",
+		"*://localhost:3030/*"
+	],
+	"action": {
+		"default_title": "Coach ComDev",
+		"default_icon": "favicon.png",
+		"default_popup": "index.html"
+	},
+	"background": {
+		"service_worker": "service-worker.js",
+		"type": "module"
+	},
+	"content_scripts": [
+		{
+			"matches": [
+				"*://*.theguardian.com/*",
+				"*://*.m.code.dev-theguardian.com/*",
+				"*://*.m.thegulocal.com/*",
+				"*://localhost:3030/*"
+			],
+			"js": ["content.js"],
+			"css": ["content.css"],
+			"type": "module"
+		}
+	],
+	"web_accessible_resources": [
+		{
+			"matches": [
+				"*://*.theguardian.com/*",
+				"*://*.m.code.dev-theguardian.com/*",
+				"*://*.m.thegulocal.com/*",
+				"*://localhost:3030/*"
+			],
+			"resources": ["MiniMap.js", "content.js.map"]
+		}
+	]
+}
